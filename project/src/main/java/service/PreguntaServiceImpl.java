@@ -23,24 +23,8 @@ public class PreguntaServiceImpl {
     private String name; 
     private String trabajoID;
     public PreguntaServiceImpl() {
-                preguntas = new ArrayList<Pregunta>();
-                respuestas = new ArrayList<String>();
-        EntityManagerFactory emf = Persistence
-                .createEntityManagerFactory("UnidadCurso");
-        EntityManager em = emf.createEntityManager();
-
-        TypedQuery<Pregunta> consulta = em.createQuery(
-                "select a from Pregunta a ", Pregunta.class);
-        for (Pregunta p : consulta.getResultList()) {
-            System.out.println(p.getTexto());
-                        preguntas.add(p);
-                        respuestas.add("");
-        }
-        em.close();
-     }
-
-     public List<Trabajo> TrabajoServiceImpl() {
-                trabajos = new ArrayList<Trabajo>();
+                
+        trabajos = new ArrayList<Trabajo>();
         EntityManagerFactory emf = Persistence
                 .createEntityManagerFactory("UnidadCurso");
         EntityManager em = emf.createEntityManager();
@@ -52,7 +36,28 @@ public class PreguntaServiceImpl {
                         trabajos.add(tr);
         }
         em.close();
-        return trabajos;
+
+     }
+
+     public void trabajoServiceImpl(String id) {
+        preguntas = new ArrayList<Pregunta>();
+        respuestas = new ArrayList<String>();
+        EntityManagerFactory emf = Persistence
+                .createEntityManagerFactory("UnidadCurso");
+        EntityManager em = emf.createEntityManager();
+
+        TypedQuery<Pregunta> consulta = em.createQuery(
+                "select a from Pregunta a where trabajo_id=:id", Pregunta.class);
+        consulta.setParameter("idTrabajo", idTrabajo);
+        for (Pregunta p : consulta.getResultList()) {
+            System.out.println(p.getTexto());
+                        preguntas.add(p);
+                        respuestas.add("");
+        }
+        System.out.println(idTrabajo);
+
+        em.close();
+
      }
     
     public void setName(String name) {

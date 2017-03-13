@@ -17,7 +17,11 @@
             <form:input id="name" path="name"/>
         </p>
         <p>
-            <form:select path="trabajo" items="${trabajoList}" />
+            <select name="trabajo" path="trabajo" >
+              <c:forEach var="t" items="${trabajoList}">
+                <option value="${t.trabajo_id}">${t.titulo}</option>
+              </c:forEach>
+            </select>
         </p>
         <p id="buttons">
             <input id="submit" type="submit" tabindex="5" 

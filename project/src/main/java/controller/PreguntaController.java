@@ -32,9 +32,10 @@ public class PreguntaController {
     private static final Log logger = LogFactory.getLog(PreguntaController.class);
 
     @RequestMapping(value = "/processForm")
-    public String processForm(@RequestParam("trabajoList") Trabajo trabajo, @ModelAttribute("name") Name name,Model model){
+    public String processForm(@ModelAttribute("name") Name name,Model model){
         pregService.setName(name.getName());
-        pregService.setTrabajoID(trabajo.getTrabajoID());
+        pregService.setTrabajoID(model.getModelAttribute("trabajo"));
+        pregService.cargarPreguntas(pregService.getTrabajoID());
         sig.incrNum();
         Pregunta p = pregService.getPregunta(sig.getNum());
         model.addAttribute("pregunta", p);
@@ -54,7 +55,6 @@ public class PreguntaController {
               conn.hset(pregService.getTrabajoID() + ":" + pregService.getName() + ":" + String.valueOf(i),"respuesta",pregService.getRespuestas().get(i-1));
             }
             sig.initNum();
-            model.addAttribute("trabajoList", new Trabajo());
             model.addAttribute("name", new Name());
             return "PregName";
           }
@@ -62,7 +62,7 @@ public class PreguntaController {
           return "PregActual";
         }
         else {
-          model.addAttribute("trabajoList", new Trabajo());
+          model.addAttribute("trabajoList", pregService.trabajoServiceImpl());
           model.addAttribute("name", new Name());
           return "PregName";
         }
