@@ -1,3 +1,6 @@
 domain/Trabajo.class
-domain/Pregunta.class
+service/Siguiente.class
+service/PreguntaServiceImpl.class
+controller/PreguntaController.class
 domain/Name.class
+domain/Pregunta.class

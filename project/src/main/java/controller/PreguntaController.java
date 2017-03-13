@@ -50,9 +50,8 @@ public class PreguntaController {
             conn.select(9); 
             for(Pregunta p1 : pregService.getPreguntas()) {
               int i = p1.getId();
-              conn.hset(pregService.getTrabajoID() + ":" + String.valueOf(i),"trabajo",p1.getTrabajo());
-              conn.hset(pregService.getName() + ":" + String.valueOf(i),"correcta",p1.getCorrecta());
-              conn.hset(pregService.getName() + ":" + String.valueOf(i),"respuesta",pregService.getRespuestas().get(i-1));
+              conn.hset(pregService.getTrabajoID() + ":" + pregService.getName() + ":" + String.valueOf(i),"correcta",p1.getCorrecta());
+              conn.hset(pregService.getTrabajoID() + ":" + pregService.getName() + ":" + String.valueOf(i),"respuesta",pregService.getRespuestas().get(i-1));
             }
             sig.initNum();
             model.addAttribute("trabajoList", new Trabajo());
