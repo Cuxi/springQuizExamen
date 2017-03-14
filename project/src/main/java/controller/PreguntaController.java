@@ -32,8 +32,8 @@ public class PreguntaController {
     private static final Log logger = LogFactory.getLog(PreguntaController.class);
 
     @RequestMapping(value = "/processForm")
-    public String processForm(@RequestParam("trabajo") String trabajo,@ModelAttribute("name") Name name,Model model){
-        pregService.setName(name.getName());
+    public String processForm(@RequestParam("trabajo") String trabajo,@RequestParam("name") String name,Model model){
+        pregService.setName(name);
 
         pregService.trabajoServiceImpl(trabajo);
         sig.incrNum();
