@@ -32,10 +32,10 @@ public class PreguntaController {
     private static final Log logger = LogFactory.getLog(PreguntaController.class);
 
     @RequestMapping(value = "/processForm")
-    public String processForm(@ModelAttribute("name") Name name,Model model){
+    public String processForm(@RequestParam("trabajo") String trabajo,@ModelAttribute("name") Name name,Model model){
         pregService.setName(name.getName());
-        pregService.setTrabajoID(model.getModelAttribute("trabajo"));
-        pregService.cargarPreguntas(pregService.getTrabajoID());
+        String id=model.getParameter(trabajo);
+        pregService.trabajoServiceImpl(id);
         sig.incrNum();
         Pregunta p = pregService.getPregunta(sig.getNum());
         model.addAttribute("pregunta", p);

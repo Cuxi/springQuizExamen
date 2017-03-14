@@ -48,13 +48,14 @@ public class PreguntaServiceImpl {
 
         TypedQuery<Pregunta> consulta = em.createQuery(
                 "select a from Pregunta a where trabajo_id=:id", Pregunta.class);
-        consulta.setParameter("idTrabajo", idTrabajo);
+        consulta.setParameter("idTrabajo", id);
         for (Pregunta p : consulta.getResultList()) {
             System.out.println(p.getTexto());
                         preguntas.add(p);
                         respuestas.add("");
         }
-        System.out.println(idTrabajo);
+        
+        System.out.println(id);
 
         em.close();
 
