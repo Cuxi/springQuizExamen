@@ -30,5 +30,5 @@ This project is Spring Quiz as it's name says. It needs a Redis server working a
 - Introducing a player name (now it's always *Paulino*).
 
 
-El estado actual de la aplicación es terminando de codificar la parte de conexión con redis para poder probar la aplicación. Me da error en la introducción de datos de redis.
+El estado actual de la aplicación es terminando de codificar la parte de conexión con redis para poder probar la aplicación. Me da error en el reconocimiento del model en el preguntaController.
 
